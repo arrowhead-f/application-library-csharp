@@ -8,7 +8,7 @@
 
     <ItemGroup>
      <Reference Include="Arrowhead">
-       <HintPath>../../client-library/obj/Debug/net48/Arrowhead.dll</HintPath>
+       <HintPath>../../library/obj/Debug/net48/Arrowhead.dll</HintPath>
      </Reference>
     </ItemGroup>
 
