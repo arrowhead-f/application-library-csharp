@@ -1,0 +1,30 @@
+{
+    "core":  {
+        "ssl": true,
+        "verifyCertificate": false,
+        "certificatePath": "C:/Users/gushan-6/ah/arrowhead-client-example/producer/cert/test_producer.p12",
+        "certificatePassword": "123456",
+        "serviceregistry": {
+            "address": "127.0.0.1",
+            "port": "8443"
+        },
+        "orchestrator": {
+            "address": "127.0.0.1",
+            "port": "8441"
+        },
+        "authorization": {
+            "address": "127.0.0.1",
+            "port": "8445"
+        }
+    },
+    "system":{
+        "name": "test_producer",
+        "ip": "127.0.0.1",
+        "port": "8080"
+    },
+    "service": {
+        "serviceDefinition": "producer",
+        "apiUri": "/producer",
+        "interfaces": ["HTTP-INSECURE-JSON"]
+    }
+}

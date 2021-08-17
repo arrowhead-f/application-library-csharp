@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ArrowheadProducer</RootNamespace>
+  </PropertyGroup>
+
+    <ItemGroup>
+     <Reference Include="Arrowhead">
+       <HintPath>../../client-library/obj/Debug/net48/Arrowhead.dll</HintPath>
+     </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Grapevine" Version="4.1.2" />
+      <PackageReference Include="newtonsoft.json" Version="12.0.3" />
+    </ItemGroup>
+</Project>
