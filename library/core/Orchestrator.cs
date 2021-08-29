@@ -61,7 +61,6 @@ namespace Arrowhead.Core
             string responseMessage = resp.Content.ReadAsStringAsync().Result;
             JObject jsonMessage = JsonConvert.DeserializeObject<JObject>(responseMessage);
             JArray response = (JArray)jsonMessage.SelectToken("response");
-
             OrchestratorResponse[] orchestration = new OrchestratorResponse[response.Count];
 
             for(int i = 0; i < response.Count; i++) {
@@ -110,7 +109,7 @@ namespace Arrowhead.Core
             }
             else
             {
-                throw new Exception("Orchestration store entry already exists");
+                throw new OrchestrationStoreEntryExistsException();
             }
         }
 

@@ -2,7 +2,7 @@
     "core":  {
         "ssl": true,
         "verifyCertificate": false,
-        "certificatePath": "C:/Users/gushan-6/ah/arrowhead-client-example/consumer/cert/test_consumer.p12",
+        "certificatePath": "cert/test_consumer.p12",
         "certificatePassword": "123456",
         "serviceregistry": {
             "address": "127.0.0.1",
@@ -26,5 +26,9 @@
         "serviceDefinition": "consumer",
         "apiUri": "",
         "interfaces": ["HTTP-INSECURE-JSON"]
+    },
+    "cloud": {
+        "operator": "aitia",
+        "name": "testcloud2"
     }
 }

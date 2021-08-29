@@ -81,7 +81,7 @@ namespace Arrowhead.Utils
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("No cloud information added in settings");
             }
         }
 

@@ -32,26 +32,26 @@ namespace Arrowhead.Core
             this.Http = http;
         }
 
-        public object RegisterService(Service payload)
+        public ServiceResponse RegisterService(Service payload)
         {
-            JObject deserializedJson = JsonConvert.DeserializeObject<JObject>(JsonConvert.SerializeObject(payload));
+            JObject deserializedJson = JObject.FromObject(payload);
             JObject providerSystem = (JObject)deserializedJson.GetValue("providerSystem");
             deserializedJson.Remove("id");
             deserializedJson.Remove("providerSystem");
             providerSystem.Remove("id");
             deserializedJson.Add("providerSystem", providerSystem);
-            
+          
             HttpResponseMessage resp = this.Http.Post(this.BaseUrl, "/register", deserializedJson);
             string respMessage = resp.Content.ReadAsStringAsync().Result;
             if (resp.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
                 if (UnregisterService(payload))
                 {
-                    return (ServiceResponse)RegisterService(payload);
+                    return RegisterService(payload);
                 }
                 else
                 {
-                    throw new Exception("Could not unregister existing service");
+                    throw new CouldNotUnregisterServiceException();
                 }
             }
             else
@@ -104,7 +104,7 @@ namespace Arrowhead.Core
 
             int length = (int)respObject.SelectToken("count");
             if (length == 0) {
-                throw new Exception("No existing services");
+                throw new NoExistingServicesException();
             }
 
             for (int i = 0; i < length; i++)
@@ -119,7 +119,7 @@ namespace Arrowhead.Core
                 }
             }
 
-            throw new Exception("No service found");
+            throw new ServiceNotFoundException(serviceDefinition);
         }
 
 

@@ -72,10 +72,11 @@ namespace Arrowhead
                 Authorization.Authorize(consumerSystemId, new string[] { resp.ProviderId }, new string[] { resp.InterfaceId }, new string[] { resp.ServiceDefinitionId });
                 Orchestrator.StoreOrchestrateEntry(consumerSystemId, this.settings.ServiceDefinition, this.settings.Interfaces[0], providerSystem, cloud);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                throw new Exception("Could not store orchestration entry");
+            catch(IntracloudRulesetExistsException e) {
+                Console.WriteLine("Could not create Intracloud ruleset, already exists. Continuing...");
+            }
+            catch(OrchestrationStoreEntryExistsException e) {
+                Console.WriteLine("Could not store orchestration entry, entry already exists. Continuing...");
             }
         }
 

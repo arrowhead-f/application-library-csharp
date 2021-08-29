@@ -23,13 +23,23 @@ namespace Arrowhead.Models
         public System ProviderSystem;
         public int Id;
         public string ServiceUri;
+        public string Secure;
 
-        public Service(System system, string serviceDefinition, string[] interfaces, string serviceUri)
+        public Service(System system, string serviceDefinition, string[] interfaces, string serviceUri, string secure = null)
         {
             this.ProviderSystem = system;
             this.ServiceDefinition = serviceDefinition;
             this.Interfaces = interfaces;
             this.ServiceUri = serviceUri;
+            
+            if (secure != null) 
+            {
+                this.Secure = secure;
+            } 
+            else 
+            {
+                this.Secure = "NOT_SECURE";
+            }
         }
 
         public override string ToString()
@@ -58,7 +68,10 @@ namespace Arrowhead.Models
             {
                 interfaces[i] = interfacesJson.Value<JToken>(i).SelectToken("interfaceName").ToString();
             }
-            Service service = new Service(sys, serviceDef, interfaces, "");
+
+            string secure = serviceJson.SelectToken("secure").ToString();
+
+            Service service = new Service(sys, serviceDef, interfaces, "", secure);
             service.Id = json.SelectToken("id").ToObject<Int32>();
             return service;
         }

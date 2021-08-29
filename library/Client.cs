@@ -47,16 +47,18 @@ namespace Arrowhead
 
             this.system = new Arrowhead.Models.System(this.settings.SystemName, this.settings.Ip, this.settings.Port, "");
             this.service = new Service(this.system, this.settings.ServiceDefinition, this.settings.Interfaces, this.settings.ApiUri);
+
             try
             {
-                ServiceResponse serviceResp = (ServiceResponse)ServiceRegistry.RegisterService(this.service);
+                ServiceResponse serviceResp = ServiceRegistry.RegisterService(this.service);
+                
                 this.system.Id = serviceResp.ProviderId;
                 Console.WriteLine(this.service.ServiceDefinition + " was registered on the system " + this.system.SystemName);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                throw new Exception("Could not register service " + this.settings.ServiceDefinition + " with the system " + this.settings.SystemName);
+                throw new Exception("Could not register the service: " + this.settings.ServiceDefinition + " with the system: " + this.settings.SystemName);
             }
         }
 

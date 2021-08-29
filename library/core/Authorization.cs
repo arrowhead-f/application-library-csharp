@@ -15,6 +15,7 @@ using System;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using Arrowhead.Utils;
+using Arrowhead.Models;
 
 namespace Arrowhead.Core
 {
@@ -60,7 +61,7 @@ namespace Arrowhead.Core
             }
             else
             {
-                Console.WriteLine("Intracloud ruleset already exists, continuing...");
+                throw new IntracloudRulesetExistsException();
             }
         }
 

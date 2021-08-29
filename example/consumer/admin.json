@@ -2,7 +2,7 @@
     "core":  {
         "ssl": true,
         "verifyCertificate": false,
-        "certificatePath": "C:/Users/gushan-6/ah/arrowhead-client-example/consumer/cert/sysop.p12",
+        "certificatePath": "cert/sysop.p12",
         "certificatePassword": "123456",
         "serviceregistry": {
             "address": "127.0.0.1",

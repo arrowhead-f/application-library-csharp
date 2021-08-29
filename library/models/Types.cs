@@ -48,7 +48,7 @@ namespace Arrowhead.Models
             this.Provider = System.Build(provider);
 
             JObject service = (JObject) payload.GetValue("service");
-            this.Service = Service.Build(service);
+            string serviceDefinition = service.GetValue("serviceDefinition").ToString();
 
             JArray interfaces = (JArray) payload.GetValue("interfaces");
             this.Interfaces = new string[1];
@@ -59,6 +59,8 @@ namespace Arrowhead.Models
             
             this.ServiceUri = (string) payload.GetValue("serviceUri");
             this.Secure = (string) payload.GetValue("secure");
+
+            this.Service = new Service(this.Provider, serviceDefinition, this.Interfaces, this.ServiceUri, this.Secure);
         }
     }
 }

@@ -42,8 +42,9 @@ namespace ArrowheadConsumer
             this.Admin = new Arrowhead.Admin(adminSettings);
 
             // creates orchestration information between this client system and 
-            // the system that has been configured in the Admin Config 
-            this.Admin.StoreOrchestrate(this.Client.GetSystemId());
+            // the system that has been configured in the Admin Config
+            this.Admin.StoreOrchestrateEntry(this.Client.GetSystemId());
+        
 
             // start orchestration between this client and a producer that this client has the rights to consume
             OrchestratorResponse[] orchestrations = this.Client.Orchestrate();
