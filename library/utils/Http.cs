@@ -16,6 +16,7 @@ using System.Text;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Arrowhead.Utils
 {
@@ -25,6 +26,10 @@ namespace Arrowhead.Utils
 
         public Http(Settings settings)
         {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
             HttpClientHandler handler = new HttpClientHandler();
             X509Certificate certificate = new X509Certificate2(settings.CertificatePath, settings.CertificatePassword);
             handler.ClientCertificates.Add(certificate);
