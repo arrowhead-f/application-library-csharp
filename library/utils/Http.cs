@@ -29,14 +29,6 @@ namespace Arrowhead.Utils
             X509Certificate certificate = new X509Certificate2(settings.CertificatePath, settings.CertificatePassword);
             handler.ClientCertificates.Add(certificate);
 
-            if (!settings.VerifyCertificate)
-            {
-                handler.ServerCertificateCustomValidationCallback =
-                    (httpRequestMessage, cert, cetChain, policyErrors) =>
-                {
-                    return true;
-                };
-            }
             this.client = new HttpClient(handler);
         }
 
