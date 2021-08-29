@@ -16,11 +16,15 @@ using Arrowhead.Core;
 using Arrowhead.Models;
 using Arrowhead.Utils;
 using Newtonsoft.Json.Linq;
+using log4net;
+using log4net.Config;
 
 namespace Arrowhead
 {
     public class Admin
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Admin));
+
         private ServiceRegistry ServiceRegistry;
         private Orchestrator Orchestrator;
         private Authorization Authorization;
@@ -73,10 +77,10 @@ namespace Arrowhead
                 Orchestrator.StoreOrchestrateEntry(consumerSystemId, this.settings.ServiceDefinition, this.settings.Interfaces[0], providerSystem, cloud);
             }
             catch(IntracloudRulesetExistsException e) {
-                Console.WriteLine("Could not create Intracloud ruleset, already exists. Continuing...");
+                log.Info("Could not create Intracloud ruleset, already exists. Continuing...");
             }
             catch(OrchestrationStoreEntryExistsException e) {
-                Console.WriteLine("Could not store orchestration entry, entry already exists. Continuing...");
+                log.Info("Could not store orchestration entry, entry already exists. Continuing...");
             }
         }
 

@@ -17,11 +17,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Arrowhead.Utils;
 using Arrowhead.Models;
+using log4net;
+using log4net.Config;
 
 namespace Arrowhead.Core
 {
     public class Orchestrator
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Orchestrator));
 
         private Http Http;
         private string BaseUrl;
@@ -105,7 +108,7 @@ namespace Arrowhead.Core
             JObject respMessage = JObject.Parse(resp.Content.ReadAsStringAsync().Result);
             if (respMessage.SelectToken("count").ToObject<int>() > 0)
             {
-                Console.WriteLine("Orchestration store entry added");
+                log.Info("Orchestration store entry added");
             }
             else
             {

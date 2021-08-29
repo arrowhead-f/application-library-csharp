@@ -21,11 +21,15 @@ using Grapevine.Shared;
 using Grapevine.Server;
 using Grapevine.Interfaces.Server;
 using Grapevine.Server.Attributes;
+using log4net;
+using log4net.Config;
 
 namespace ArrowheadProducer
 {
     class Program
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
+
         private Arrowhead.Client Client;
 
         public Program(JObject config)

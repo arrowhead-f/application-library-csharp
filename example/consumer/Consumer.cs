@@ -18,11 +18,15 @@ using Newtonsoft.Json.Linq;
 using Arrowhead.Models;
 using Grapevine.Client;
 using Grapevine.Shared;
+using log4net;
+using log4net.Config;
 
 namespace ArrowheadConsumer
 {
     class Program
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Program));
+
         private Arrowhead.Admin Admin;
         private Arrowhead.Client Client;
 
@@ -57,7 +61,7 @@ namespace ArrowheadConsumer
 
                 ProducerSSL = orchestration.Interfaces[0] == "HTTPS-SECURE-JSON";
 
-                Console.WriteLine("Orchestration against http" + (ProducerSSL ? "s://" : "://") + this.ProducerHost + ":" + this.ProducerPort + this.ServiceUri + " was started");
+                log.Info("Orchestration against http" + (ProducerSSL ? "s://" : "://") + this.ProducerHost + ":" + this.ProducerPort + this.ServiceUri + " was started");
             }
         }
 
@@ -73,7 +77,7 @@ namespace ArrowheadConsumer
             while (true)
             {
                 RestResponse response = (RestResponse)client.Execute(request);
-                Console.WriteLine(JsonConvert.DeserializeObject<JObject>(response.GetContent()));
+                log.Info(JsonConvert.DeserializeObject<JObject>(response.GetContent()));
                 System.Threading.Thread.Sleep(1000);
             }
         }

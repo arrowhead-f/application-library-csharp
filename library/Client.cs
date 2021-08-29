@@ -15,11 +15,14 @@ using System;
 using Arrowhead.Core;
 using Arrowhead.Models;
 using Arrowhead.Utils;
+using log4net;
+using log4net.Config;
 
 namespace Arrowhead
 {
     public class Client
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Client));
         private Service service;
         private Arrowhead.Models.System system;
 
@@ -53,11 +56,11 @@ namespace Arrowhead
                 ServiceResponse serviceResp = ServiceRegistry.RegisterService(this.service);
                 
                 this.system.Id = serviceResp.ProviderId;
-                Console.WriteLine(this.service.ServiceDefinition + " was registered on the system " + this.system.SystemName);
+                log.Info(this.service.ServiceDefinition + " was registered on the system " + this.system.SystemName);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                log.Error(e.Message);
                 throw new Exception("Could not register the service: " + this.settings.ServiceDefinition + " with the system: " + this.settings.SystemName);
             }
         }

@@ -17,12 +17,14 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Arrowhead.Models;
 using Arrowhead.Utils;
+using log4net;
+using log4net.Config;
 
 namespace Arrowhead.Core
 {
     public class ServiceRegistry
     {
-
+        private static readonly ILog log = LogManager.GetLogger(typeof(ServiceRegistry));
         private Http Http;
         private string BaseUrl;
 
@@ -77,8 +79,11 @@ namespace Arrowhead.Core
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine(e.Message);
+                log.Debug(e.Message);
                 return false;
+            }
+            catch (Exception e) {
+                throw new CouldNotUnregisterServiceException();
             }
         }
 
@@ -159,7 +164,7 @@ namespace Arrowhead.Core
             }
             catch (HttpRequestException e)
             {
-                Console.WriteLine(e.Message);
+                log.Debug(e.Message);
                 return e;
             }
         }

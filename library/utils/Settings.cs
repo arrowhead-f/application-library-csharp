@@ -13,11 +13,14 @@
 
 using System;
 using Newtonsoft.Json.Linq;
+using log4net;
+using log4net.Config;
 
 namespace Arrowhead.Utils
 {
     public class Settings
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(Settings));
 
         public Boolean CoreSSL, VerifyCertificate;
         private string ServiceRegistryAddress, ServiceRegistryPort;
@@ -81,7 +84,7 @@ namespace Arrowhead.Utils
             }
             catch (Exception e)
             {
-                Console.WriteLine("No cloud information added in settings");
+                log.Info("Could not parse cloud information in settings");
             }
         }
 
