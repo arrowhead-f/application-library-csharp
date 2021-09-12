@@ -2,10 +2,11 @@
 A client library for creating Service Providers and Consumers for [Arrowhead](https://www.arrowhead.eu) written in C#.
 The intention of this library is to make it eaiser for developers to register and orchestrate services by providing an interface against the [Core Systems](https://github.com/arrowhead-f/core-java-spring).
 
-An example of how to use the library with a basic Producer and Consumer can be found [here](https://github.com/97gushan/arrowhead-client).
+An example of how to use the library with a basic Producer and Consumer can be in the example folder in this repo.
 
-## Developement Dependencies
-* .NET Core Runtime/SDK (tested on 3.0)
+## .NET versions Dependencies
+* .NET Core 5
+* .NET Framework 4.8
 
 ## Runtime Dependencies
 To run a program with the library the mandatory core Arrowhead systems must be running and their ip addresses and ports must be configured correctly.
