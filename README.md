@@ -16,8 +16,7 @@ For use of the admin functionality in the Arrowhead C# library a sysop certifica
 
 
 ## Limitations
-This project is in a very early development state and this it has some major limitations. This includes but is not limited to:
+This project is in a very early development state and thus it has some major limitations. This includes but is not limited to:
 * This library only connects to the three mandatory core systems
 * No existing test suite
-* No logging system
 * Lacking error handling
